@@ -3,7 +3,7 @@
 ## Data Exploration and Preprocessing
 Here's a link to my noteboook for data processing [Notebook here](https://raw.githubusercontent.com/portoaj/CSE151A-Project/main/DataExploration.ipynb)
 ### Labeled Data
-My labeled data was created by myself by scraping images of keyboards from popular mechanical keyboard vendors like KBDFans, and manually drawing bounding boxes over each keycap in the image. Here's an example: [Annotation Image](https://github.com/portoaj/CSE151A-Project/raw/main/Examples/dataannotationexample.png)
+My labeled data was created by myself by scraping images of keyboards from popular mechanical keyboard vendors like KBDFans, and manually drawing bounding boxes over each keycap in the image. Here's an example: ![Annotation Image](https://github.com/portoaj/CSE151A-Project/raw/main/Examples/dataannotationexample.png)
 
 Each of those neon yellow boxes around the keycaps were those bounding boxes that I manually drew. I draw bounding boxes for around a hundred keycaps each for tens of images, which was pretty painstaking but should allow me to train an object detection model capable of finding the keycaps within an image.
 
