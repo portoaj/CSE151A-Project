@@ -1,6 +1,6 @@
 # CSE151A-Project
 
-## Data Processing
+## Data Exploration and Preprocessing
 Here's a link to my noteboook for data processing [Notebook here](https://raw.githubusercontent.com/portoaj/CSE151A-Project/main/DataExploration.ipynb)
 ### Labeled Data
 My labeled data was created by myself by scraping images of keyboards from popular mechanical keyboard vendors like KBDFans, and manually drawing bounding boxes over each keycap in the image. Here's an example: [Annotation Image](https://github.com/portoaj/CSE151A-Project/raw/main/Examples/dataannotationexample.png)
