@@ -47,3 +47,24 @@ The third model I want to try is DETA, which seems to be the generally best perf
 This model has shown that I'm definitely able to train an Object Detection model on my dataset with some accuracy. However, the results were quite mixed. If you look at the final testing image you can tell that there are some annotations being drawn where there should be none and also that some of the keycaps aren't annotated. However, the majority of the annotations seem accurate.
 
 There's a lot of room for further improvement by trying different data augmentation strategies, different models and different hyperparameters. In particular, I might want to increase the learning rate as the model converged quite slowly.
+
+# Milestone 4
+Jupyer notebook link here: [Notebook here](https://raw.githubusercontent.com/portoaj/CSE151A-Project/main/CSE151AProjectMilestone4.ipynb)
+
+1. Evaluate your data, labels and loss function. Were they sufficient or did you have have to change them.
+I kept my data and labels the same with this model. The main difference was that instead of using Facebook's DETR model I used Facebook's Deformable DETR model this time which the authors of the model described as a similar model to DETR but whose attention modules look at less data which supposedly decreased the number of training epochs needed by 10x.
+2. Train your second model
+Done
+3. Evaluate your model compare training vs test error
+Oddly enough my testing error was actually lower than my training error. I think this may be due to my testing set being too small as it includes less than 10 images since my overall dataset is fairly small.
+The validation error produced by this model was significantly less than that produced by first model and specifically in my evaluation section the validation recall and precision are much higher in this model than my previous one so I was quite happy.
+4. Where does your model fit in the fitting graph, how does it compare to your first model?
+My model fits in the fitting graph in a similar place to my first model, I think it is actually quite balanced in terms of complexity. The model seemed to have converged since by the end of the training both training and validation loss were mostly flat but I don't think it overfitted since the validation loss was quite low and the validation loss didn't begin increasing towards the end of training.
+5. Did you perform hyper parameter tuning? K-fold Cross validation? Feature expansion? What were the results?
+I performed some hyper parameter tuning by trying different amounts of training epochs and adjusting the batch size. At first my training epochs were set too small and the model was clearly still converging by the end of the training so I increased the number of epochs the model would train. I also adjusted the batch size down from 8 to 2 because my model was running out of VRAM. Then, I tried a batch size of 4 which left me just enough VRAM but made model training significantly faster and slightly lowered my validation loss.
+5. What is the plan for the next model you are thinking of and why?
+Originally I'd planned to train a YOLOS model for this milestone but I decided to work on the deformable DETR model since I was having issues with my evaluation code and it was easier to debug with a model more similar to my previous checkpoint. Now that that's working properly, I think I'll probably do the YOLOS model for my next milestone.
+6. Update your readme with this info added to the readme with links to the jupyter notebook!
+Done
+7. Conclusion section: What is the conclusion of your 2nd model? What can be done to possibly improve it? How did it perform to your first and why?
+I'm very happy with this model and it performed much much better than my first model. If you look at the annotated images that it generated at the bottom of the notebook, you can tell that there are certain types of images/ keyboards the model performs badly on, but aside from those the model performed extremely well. I think the best way to improve my model from here would definitely be to add more images as my training set is quite small at somewhere in 20-30 images. I think this would remove the cases where my model struggles with "bad images". I could also try more aggressive image augmentation to generate more variations at different scales, colors, etc.
