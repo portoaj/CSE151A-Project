@@ -68,3 +68,21 @@ Originally I'd planned to train a YOLOS model for this milestone but I decided t
 Done
 7. Conclusion section: What is the conclusion of your 2nd model? What can be done to possibly improve it? How did it perform to your first and why?
 I'm very happy with this model and it performed much much better than my first model. If you look at the annotated images that it generated at the bottom of the notebook, you can tell that there are certain types of images/ keyboards the model performs badly on, but aside from those the model performed extremely well. I think the best way to improve my model from here would definitely be to add more images as my training set is quite small at somewhere in 20-30 images. I think this would remove the cases where my model struggles with "bad images". I could also try more aggressive image augmentation to generate more variations at different scales, colors, etc.
+
+# Milestone 5/ Model 3
+Jupyer notebook link here: [Notebook here](https://raw.githubusercontent.com/portoaj/CSE151A-Project/main/CSE151AProjectMilestone5.ipynb)
+
+1. Evaluate your data, labels and loss function. Were they sufficient or did you have have to change them.
+I had to create a new version of my data in Yolov8 compatible format as the COCO formatted data wasn't natively supported by Ultralytics. My labels seemed to be sufficient by my results as discussed later and I used the built-in loss functions (box, class, focal).
+2. Train your third model
+Done
+3. Evaluate your model compare training vs test error
+My training, validation, and test errors were all very low with this model. In particular my recall was over 0.98 and my AP:50 was also over .98 so the model had both high recall and precision for all splits.
+4. Where does your model fit in the fitting graph, how does it compare to your first two models?
+My model seemed to be quite balanced as it didn't underfit based on the validation results and it didn't overfit since the loss metrics for the validation didn't increase towards the end of training. While the other two models were also balanced, this model had much better results.
+5. Did you perform hyper parameter tuning? K-fold Cross validation? Feature expansion? What were the results?
+I tried different numbers of epochs and eventually realized that my initial numbers were too high. I tried originally with 300 epochs but after setting a patience parameter for early-stopping I realized 300 was much too high so I settled on 100. This resulted in much faster training with very similar results.
+6. Update your readme with this info added to the readme with links to the jupyter notebook!
+Done
+7. Conclusion section: What is the conclusion of your 3rd model? What can be done to possibly improve it? How did it perform to your first two models and why?
+This model performed by far the best out of my 3 models and I'm quite happy with it. I feel like it simply needs more training data, especially for keycaps that are unusual. For example, the model didn't properly label the spacebar in the testing set, which I assume is because it's shaped differently from most of the keys so adding more spacebars and variety of keycaps should help. This model was much smaller than my previous models (I purposefully chose the small version of yolov8) because I thought that might help the model converge since the task I'm training on is relatively trivial compared to most object detection tasks. That idea seemed correct and I believe that the previous two very large transformer-based models may have had too much complexity for my use case. Another benefit of this model is that it is very fast for inference at around 25ms per image which will be nice if I want to get results from a big batch of images at once.
