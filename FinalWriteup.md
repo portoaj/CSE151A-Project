@@ -1,7 +1,7 @@
 1.A complete Introduction
 # Final Project Writeup
 
-## Previous notebooks
+## Milestone notebooks
 [Data exploration & preprocessing notebook](https://raw.githubusercontent.com/portoaj/CSE151A-Project/main/DataExploration.ipynb)
 [Model 1 notebook](https://raw.githubusercontent.com/portoaj/CSE151A-Project/main/CSE151AProjectMilestone3.ipynb)
 [Model 2 notebook](https://raw.githubusercontent.com/portoaj/CSE151A-Project/main/CSE151AProjectMilestone4.ipynb)
