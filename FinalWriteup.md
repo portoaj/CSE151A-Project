@@ -238,24 +238,32 @@ Here's an example of one of the images
 ![Image genereated by preprocessing](https://raw.githubusercontent.com/portoaj/CSE151A-Project/main/Examples/unlabeleddataexample.jpg)
 *Image genereated by preprocessing*
 ### Model 1
+
+The training/ validation loss graph shows that this model did converge, however the loss is still quite high even when the training finished.
+
 ![Training/Validation loss for model 1 ](https://raw.githubusercontent.com/portoaj/CSE151A-Project/main/Examples/model1graph.png)
 *Training/Validation loss for model 1*
+
+The high loss of the training is reflected in the poor testing metrics. In particular I want to have a high recall in order to count the number of keycaps in an image accurately and my recall for any size with the maximum number of detections set to 100 was only 0.447, which is definitely not good enough to be used in production.
 
 ![Testing metrics for model 1 ](https://raw.githubusercontent.com/portoaj/CSE151A-Project/main/Examples/project1eval.png)
 *Testing metrics for model 1*
 
-Finally, I ran the model and displayed the inferences on one of my testing images:
+Finally, I ran the model and displayed the inferences on one of my testing images. There are clear issues with this inference including extra annotations where keycaps don't exist and multiple annotations on the same keycap.
 ![Testing image with annotations for model 1 ](https://raw.githubusercontent.com/portoaj/CSE151A-Project/main/Examples/project1result.png)
 *Testing image with annotations for model 1*
 
 ### Model 2
+
+The training/validation loss graph for this model was quite interesting as the validation loss was actually lower than the training loss, which I talk about later in the discussion section. From the graph it looks like the model did converge and both the training and validation loss is lower in this modle than the first one. Additionally, there are no signs of overfitting in the eval_loss curve.
 ![Training/Validation loss for model 2 ](https://raw.githubusercontent.com/portoaj/CSE151A-Project/main/Examples/model2graph.png)
 *Training/Validation loss for model 2*
 
+The training metrics for model 2 showed improvement over those for model 1. In particular the precision was quite high between 0.622, 0.793, and 0.760 depending on the IoU size used. The recall for all areas with maximum detections was 0.662 which was still not satisfactory to put the model into production.
 ![Testing metrics for model 2 ](https://raw.githubusercontent.com/portoaj/CSE151A-Project/main/Examples/model2eval.png)
 *Testing metrics for model 2*
 
-Here are a couple examples of inference with the model.
+Here are a couple examples of inference with the model. The first image is problematic as the model labels almost none of the keycaps, although the five labels it does give look very precise. The second image is a pretty successful demonstration of the model, although there are still a few mistakes.
 
 ![First testing image with annotations for model 2 ](https://raw.githubusercontent.com/portoaj/CSE151A-Project/main/Examples/model2result1.png)
 *First testing image with annotations for model 2*
@@ -265,11 +273,17 @@ Here are a couple examples of inference with the model.
 
 ### Model 3
 
+Ultralytics gives a more complete set of training graphs to look at. In particular, the different types of loss are separated into a box loss graph, a classification loss graph, and a focal loss graph, with the first two being the most important. The model seems to converge well and the metrics on the validation set are nearly perfect. The recall at times hit a perfect 1.0 and the precision got quite close at above 0.98 at times. The mAP50 and mAP50:95 which were accuracy metrics were quite high as well. This model seems to be a great fit for this training data based on these graphs.
+
 ![Training/Validation loss for model 3 ](https://raw.githubusercontent.com/portoaj/CSE151A-Project/main/Examples/model3graph.png)
 *Training/Validation loss for model 3*
 
+The testing metrics agree with the results from the training/validation graphs. The recall is at 0.987 with a precision of 0.978, which is more than sufficient for my task.
+
 ![Testing metrics for model 3 ](https://raw.githubusercontent.com/portoaj/CSE151A-Project/main/Examples/model3eval.png)
 *Testing metrics for model 3*
+
+These images show both how effective the model is as well as an area where it could improve. It seemed to guess everything correctly except for the blue spacebar in the second testing image.
 
 ![Testing image with annotations for model 3 ](https://raw.githubusercontent.com/portoaj/CSE151A-Project/main/Examples/model3result.png)
 *Testing image with annotations for model 3*
